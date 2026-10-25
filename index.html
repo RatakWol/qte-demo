@@ -1,0 +1,101 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>月台 QTE 試玩</title>
+<style>
+:root{--bg:#E4D7C1;--card:#FBF5E8;--fg:#3B2F25;--mute:#7A6A57;--line:#D5C7AB;--accent:#B2493E;--sans:'Noto Sans TC','PingFang TC','Microsoft JhengHei',system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2A2118;--card:#352B20;--fg:#EADFCB;--mute:#B5A58E;--line:#4A3D2D;--accent:#E58C7E}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.7 var(--sans);padding:0 16px 40px}
+main{max-width:520px;margin:0 auto;padding-top:28px}h1{font-size:22px;margin:0 0 4px}p.s{color:var(--mute);margin:0 0 18px;font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+label{display:block;font-size:14px;margin-top:10px}label b{float:right;font-weight:400;color:var(--mute)}
+input[type=range]{width:100%}
+button.go{width:100%;padding:14px;font:700 18px var(--sans);background:var(--accent);color:#fff;border:0;border-radius:10px;margin-top:6px;cursor:pointer}
+#res{min-height:3em;font-weight:700}#log{font-size:13px;color:var(--mute)}
+/* ---------- Alpha 掙扎 QTE（陽春版）---------- */
+body.qlock,body.qlock *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent}
+#qte{position:fixed;inset:0;z-index:999;background:rgba(10,4,4,0);touch-action:manipulation;user-select:none;-webkit-user-select:none;overflow:hidden;transition:background .6s,opacity .7s}
+#qte.play{background:rgba(10,4,4,.55)}
+#qte .qw{position:absolute;top:42%;left:0;right:0;text-align:center;font:700 clamp(16px,4.5vw,26px)/1.4 var(--sans);color:#ffd9cf;background:rgba(150,20,20,.85);padding:10px 0;letter-spacing:.12em;transform:translateX(110%);animation:qwin 1.4s ease-in-out forwards}
+@keyframes qwin{0%{transform:translateX(110%)}25%{transform:translateX(0)}75%{transform:translateX(0)}100%{transform:translateX(-110%)}}
+#qte .jaw{position:absolute;left:-4%;right:-4%;height:4vh;background:#1b0d0d;transition:none;opacity:0}
+#qte.play .jaw,#qte.win .jaw,#qte.bite .jaw{opacity:1}
+#qte .jt{top:0;border-bottom:3px solid #3a1c1c}
+#qte .jb{bottom:0;border-top:3px solid #3a1c1c}
+#qte .jaw::after{content:"";position:absolute;left:0;right:0;height:34px;background-repeat:repeat-x;background-size:44px 34px}
+#qte .jt::after{bottom:-34px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='34'%3E%3Cpolygon points='0,0 22,34 44,0' fill='%23efe4cf'/%3E%3C/svg%3E")}
+#qte .jb::after{top:-34px;background-position-x:22px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='34'%3E%3Cpolygon points='0,34 22,0 44,34' fill='%23efe4cf'/%3E%3C/svg%3E")}
+#qte .eyes{position:absolute;left:0;right:0;top:19vh;display:flex;justify-content:center;gap:22px;z-index:3;opacity:0;pointer-events:none;transition:opacity .5s}
+#qte.play .eyes,#qte.win .eyes,#qte.bite .eyes{opacity:1}
+#qte .eye{position:relative;width:74px;height:40px;border-radius:50%;background:#efe4cf;overflow:hidden;box-shadow:0 0 0 3px #1b0d0d,0 0 calc(4px + 22px * var(--k,0)) rgba(255,90,40,calc(.15 + .6 * var(--k,0)))}
+#qte .ir{position:absolute;left:50%;top:50%;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;background:radial-gradient(circle,#6d6a66 0,#a9a5a0 100%);opacity:calc(1 - .35 * var(--k,0))}
+#qte .pu{position:absolute;left:50%;top:50%;height:32px;width:calc(5px + 19px * var(--p,1));transform:translate(-50%,-50%);border-radius:50%;background:#090303}
+#qte.hit .jaw{filter:brightness(1.5)}
+#qte .qh{position:absolute;left:0;right:0;top:56%;text-align:center;font:700 clamp(16px,4vw,22px) var(--sans);color:#fff3e6;opacity:0;pointer-events:none;text-shadow:0 2px 6px #000;animation:qhin 1.5s ease-out forwards}
+@keyframes qhin{0%,12%{opacity:0}30%,80%{opacity:.95}100%{opacity:0}}
+#qte.play .qh{animation:none;opacity:0}
+#qte .qs{position:absolute;left:50%;bottom:calc(8vh + 56px);transform:translateX(-50%);font:14px var(--sans);color:#d8c9b5;background:rgba(0,0,0,.45);border:1px solid #6b5a46;border-radius:8px;padding:8px 14px;z-index:2}
+#qte.bite{background:rgba(0,0,0,.85)}
+#qte.out{opacity:0}
+#qte.bite.out{background:#000;opacity:0}
+
+</style></head><body><main>
+<h1>月台 QTE 試玩</h1><p class="s">警告 → 獸頭咬合 → 連點（或空白鍵）把嘴撐開。撐過時間就贏，嘴合上就輸。</p>
+<div class="card">
+<label>撐住的時間 <b id="v1"></b><input id="r1" type="range" min="2" max="10" step="0.5" value="4.5"></label>
+<label>咬合速度（越小越快）<b id="v2"></b><input id="r2" type="range" min="1" max="5" step="0.1" value="2.3"></label>
+<label>每點撐開的力道 <b id="v3"></b><input id="r3" type="range" min="3" max="20" step="1" value="8.5"></label>
+<button class="go" id="go" type="button">開始</button></div>
+<div class="card"><div id="res">還沒玩過。</div><div id="log"></div></div>
+</main><script>
+let QTE_ON=false;
+function qte(opt,done){
+  opt=opt||{};
+  const auto=(typeof AUTO!=='undefined'&&AUTO.spd)||opt.skip;
+  if(auto){done(Math.random()<(opt.p||.7));return}
+  QTE_ON=true;
+  const o=document.createElement('div');o.id='qte';
+  o.innerHTML='<div class="qw">⚠ 警告 ⚠　費洛蒙濃度急速上升</div><div class="jaw jt"></div><div class="eyes"><div class="eye"><i class="ir"></i><i class="pu"></i></div><div class="eye"><i class="ir"></i><i class="pu"></i></div></div><div class="jaw jb"></div><div class="qh">連點螢幕　或　按空白鍵</div><button class="qs" type="button">不想玩這段（自動處理）</button>';
+  document.body.appendChild(o);
+  /* 手機連點會選到後面的字、跳出放大鏡或選單：鎖住選取、長按選單與雙擊縮放 */
+  document.body.classList.add('qlock');
+  const nosel=e=>e.preventDefault();
+  ['selectstart','contextmenu','dblclick','gesturestart'].forEach(n=>document.addEventListener(n,nosel,true));
+  o.addEventListener('touchstart',e=>{if(!e.target.closest('.qs'))e.preventDefault();try{getSelection().removeAllRanges()}catch(_){}},{passive:false});
+  const unlock=()=>{document.body.classList.remove('qlock');['selectstart','contextmenu','dblclick','gesturestart'].forEach(n=>document.removeEventListener(n,nosel,true))};
+  const jt=o.querySelector('.jt'),jb=o.querySelector('.jb'),qh=o.querySelector('.qh'),qw=o.querySelector('.qw');
+  let g=1,phase='warn',t0=performance.now(),last=t0,fin=false;
+  const DUR=opt.dur||4500, CLOSE=opt.close||2300, PUSH=opt.push||.085;
+  const setJaw=()=>{const h='calc(4vh + '+(1-g).toFixed(3)+' * (46vh - 16px))';jt.style.height=h;jb.style.height=h;o.style.setProperty('--p',g.toFixed(3));o.style.setProperty('--k',(1-g).toFixed(3))};
+  setJaw();
+  const tap=()=>{if(phase==='play'){g=Math.min(1,g+PUSH);o.classList.add('hit');clearTimeout(tap.tm);tap.tm=setTimeout(()=>o.classList.remove('hit'),60)}};
+  const key=e=>{if(e.code==='Space'||e.key===' '||e.key==='Enter'){e.preventDefault();tap()}};
+  o.addEventListener('pointerdown',e=>{if(e.target.closest('.qs'))return;e.preventDefault();tap()});
+  document.addEventListener('keydown',key,true);
+  const end=ok=>{if(fin)return;fin=true;document.removeEventListener('keydown',key,true);
+    if(ok){o.classList.add('win');jt.style.height=jb.style.height='4vh'}
+    else{g=0;setJaw();o.classList.add('bite')}
+    qh.textContent='';
+    setTimeout(()=>{o.classList.add('out')},ok?500:900);
+    setTimeout(()=>{unlock();o.remove();QTE_ON=false;done(ok);if(typeof autoTick==='function')autoTick()},ok?1200:2200)};
+  o.querySelector('.qs').onclick=()=>{if(fin)return;fin=true;document.removeEventListener('keydown',key,true);unlock();o.remove();QTE_ON=false;done(Math.random()<(opt.p||.7));if(typeof autoTick==='function')autoTick()};
+  const loop=now=>{
+    if(fin)return;
+    const dt=now-last;last=now;
+    if(phase==='warn'){if(now-t0>1500){phase='play';t0=now;o.classList.add('play')}}
+    else{g-=dt/CLOSE;setJaw();
+      if(g<=0){end(false);return}
+      if(now-t0>=DUR){end(true);return}}
+    requestAnimationFrame(loop)};
+  requestAnimationFrame(loop);
+}
+
+const $=s=>document.querySelector(s),L=[];
+const sync=()=>{$('#v1').textContent=$('#r1').value+' 秒';$('#v2').textContent=$('#r2').value+' 秒';$('#v3').textContent=$('#r3').value+'%'};
+['r1','r2','r3'].forEach(i=>$('#'+i).oninput=sync);sync();
+$('#go').onclick=()=>{
+  const dur=+$('#r1').value*1000,close=+$('#r2').value*1000,push=+$('#r3').value/100;
+  $('#res').textContent='';
+  qte({dur,close,push},ok=>{
+    $('#res').textContent=ok?'撐住了。':'被咬下去了。';
+    L.unshift((ok?'贏':'輸')+'：撐 '+$('#r1').value+' 秒／咬合 '+$('#r2').value+' 秒／力道 '+$('#r3').value+'%');
+    $('#log').innerHTML=L.slice(0,8).join('<br>');
+    $('#go').textContent='再玩一次'})};
+</script></body></html>
