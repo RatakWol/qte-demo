@@ -82,6 +82,10 @@ input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid 
 .row .au{color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px}
 .row .tt{min-width:0;overflow-wrap:anywhere}
 .row .tt.ann{color:var(--accent);font-weight:700}
+.pager{display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;padding:8px 0}
+.pager .pg{min-width:5em;text-align:center;color:var(--dim);font-size:14px}
+.pager .btn:disabled{opacity:.4;cursor:default}
+.pin-sep{color:var(--dim);font-size:13px;text-align:center;padding:6px 0 2px}
 .s-bao{color:var(--push);font-weight:700}.s-hot{color:var(--hot);font-weight:700}.s-ok{color:var(--good)}.s-bad{color:var(--push)}
 .foot-hint{padding:14px 12px;color:var(--dim);font-size:14px}
 
@@ -133,7 +137,7 @@ const articles = [
 2.記者署名：本報司法組
 3.完整新聞標題：成步堂律師與御劍檢察官宣布結婚 四大司法機關同日發表聲明
 4.完整新聞連結：https://www.hokai-nippo.example/judiciary/1028-0042
-5.備註：四份聲明全文如下，板主置頂。
+5.備註：四份聲明全文如下，板主置底。
 
 【東京地方檢察廳官方聲明】
 本廳對御劍怜侍檢察官與成步堂龍一律師宣布結婚一事表示誠摯祝賀。
@@ -218,7 +222,7 @@ const articles = [
     ['推','pudding_88','我們這些嗑了十年的人 今天終於被國家認可了'],
     ['推','pickle_pie','「為社會帶來更多正面影響」 這個職責太重了'],
     ['→','old_fan','他們已經在做了'],
-    ['推','sysop','板主置頂 衛生紙請自備'],
+    ['推','sysop','板主置底 大家冷靜'],
     ['推','moon_walker','我在公司看到新聞 當場站起來 同事問我怎麼了'],
     ['→','moon_walker','我說：司法界有人結婚了'],
     ['推','kitchen_fox','四份聲明我讀了五遍'],
@@ -264,11 +268,11 @@ const articles = [
     ['推','pudding_88','新婚快樂 兩位'],
     ['推','night_owl','新婚快樂 +1'],
     ['推','tea_time','新婚快樂 +100'],
-    ['推','sysop','板主：本串自動置頂 請大家繼續祝福']
+    ['推','sysop','板主：本串自動置底 請大家繼續祝福']
   ]
 },
 {
-  ann:true, title:'[公告] 板規 (二創請照事務所公告 衛生紙請自備)', au:'sysop', nick:'板主', date:'05/21', t:[9,0],
+  ann:true, title:'[公告] 板規 (二創請照事務所公告)', au:'sysop', nick:'板主', date:'05/21', t:[9,0],
   body:`本板收錄逆轉同人圈的創作、目擊與八卦。
 
 一、本人已公開表示「高興而且支持」，但要求二創提出書面詳細資料，才會批准商業使用與代言。這點請遵守。
@@ -287,7 +291,7 @@ const articles = [
     ['→','sysop','事務所沒說 建議三頁起跳'],
     ['推','pickle_pie','三頁 我寫得出來'],
     ['推','sunset_lover','這個板規比我的合約還好讀'],
-    ['→','careful_one','我只想補一句：衛生紙真的要自備'],
+    ['→','careful_one','我只想補一句：第二條請大家真的遵守'],
     ['推','night_owl','先生 你推了'],
     ['→','careful_one','…這是公告 不算'],
   ]
@@ -423,8 +427,8 @@ const articles = [
   ]
 },
 {
-  ann:true, title:'[公告] 庭期整理串 （置頂 每週一更新上週）', au:'sysop', nick:'板主', date:'11/24', t:[9,0],
-  body:`【置頂】本串每週一更新，整理的是「上一週」已經結束的庭期。
+  ann:true, title:'[公告] 庭期整理串 （置底 每週一更新上週）', au:'sysop', nick:'板主', date:'08/11', t:[9,0],
+  body:`【置底】本串每週一更新，整理的是「上一週」已經結束的庭期。
 
 板規先重講一次：
 一、資料來源僅限法院對外公布的庭期表。
@@ -433,49 +437,55 @@ const articles = [
 板主不會通靈，所以請不要來問「本週他有沒有庭」。
 
 ──────────────
-上週（11/17 – 11/21）成步堂律師庭期
-週一　地方法院　第 2 法庭　10:00　辯護
-週二　地方法院　第 2 法庭　10:00　續行
-週三　高等法院　第 5 法庭　14:00　辯護　※ 週二傍晚才出現在庭期表
-週四　地方法院　第 3 法庭　09:30　辯護　※ 週三晚上 23:40 才出現
-週五　地方法院　第 1 法庭　13:30　辯護　※ 週四半夜才出現
+上週（08/04 – 08/08）成步堂律師庭期
+週一　（無）
+週二　（無）
+週三　（無）
+週四　（無）
+週五　（無）
 
+成步堂律師上週：0 庭
 御劍局長上週公訴席：0 庭
 ──────────────
 
 註記：
-本月截至上週，成步堂律師共 14 庭，其中 9 庭是在開庭前一天才出現在庭期表上。
-每一件都是重大刑案，每一件都在趕。我整理了三個月，只得到一個結論，就是這個人的行事曆不是排出來的，是被案件寫出來的。
-御劍局長那一欄，我每週還是會放上去，雖然每週都是 0。這是儀式。
+上週兩個欄位都是 0。新來的板友不用緊張，成步堂律師本來就是好幾週才一庭，一庭就是連開兩三天，每一庭都是硬仗，所以庭期表空著是常態，滿的時候才要擔心。兩年前本串剛開的那個月是特例，他連續好幾週被急案塞滿，一個月開了 14 庭，板上老人應該都還記得，那之後就再也沒出現過那種月份。換個說法：這一欄是 0，代表上週日本很和平，沒有那麼多被冤枉的人需要他。
 
-板主補充：
-有人問為什麼不預告本週的。因為板主不會通靈，不知道成步堂律師這週會不會又被塞進什麼急案。
-有人說最近日本還算和平，應該不會這麼多庭，我只能說上週也是這樣說的。
-發現庭期有誤，請直接在推文補上，我會修正。`,
+至於庭少等於事務所的帳也很空這件事，不在本串整理範圍。
+
+另外，昨天（週日）的法律週研習講座不是開庭，不列入本表。成步堂律師在講座上坐了檢察官席，御劍局長坐了辯護人席，這些也都不列入。請不要再私訊問我局長那一欄能不能改成 1。
+
+那一欄依然是 0，這是儀式。
+
+發現庭期有誤，請直接在推文補上，我會修正。
+
+※ 編輯: sysop, 08/11 09:00`,
   pushes:[
-    ['推','night_owl','週五那庭是週四半夜才出現的 我當時剛好在刷 刷到的時候整個人是醒的'],
-    ['推','tea_time','上週的 所以現在看起來是整整齊齊的五天 但實際上那五天每一天都是前一天才知道'],
-    ['→','sysop','對 整理完的表看起來很整齊 這是這串最騙人的地方'],
-    ['推','stat_otaku','14 庭 9 庭是前一天才出現 比例 64% 這個人的行事曆是被案件寫出來的 這句我可以貼在板標嗎'],
-    ['→','sysop','不行 但我知道你會背'],
-    ['推','ran_blue','五天全滿 每一天都是重大刑案 光看這串我就覺得他沒有睡'],
-    ['推','pudding_88','週四 23:40 才出現 我那時候在想他明天是不是要空窗 結果週五是有庭的'],
-    ['→','legalnews','補充：週五庭期為週四深夜法院排定 與案件移審時程有關 本報無進一步說明'],
-    ['推','gavel_fan','庭期臨時加入 常見原因是羈押庭或緊急聲請 對辯護人來說 前一天接案再趕赴開庭是真的存在的處境'],
-    ['推','sherlock_hole','請問御劍局長那一欄 本週為 0 本月為多少'],
-    ['→','sysop','本月 0 庭 上個月 0 庭'],
-    ['推','careful_one','局長那一欄的 0 我看了好幾週 現在看到會覺得是一種安心'],
-    ['推','kitchen_fox','五天連開 這個人到底有沒有吃飯'],
-    ['→','sawako_cutlet','週二傍晚他有來店裡買一份炸肉餅 站在門口吃完才走'],
-    ['推','sunset_lover','站在門口吃完 因為沒時間坐下'],
-    ['推','violet_aya','這種賽程 是連續客場 沒有主場休息 球員會累'],
-    ['推','young_pros','局長不用開庭 他在背後處理的事情比開庭還多 但那個不會出現在庭期表上'],
-    ['推','akane_red','最近日本明明還算和平 他到底是從哪裡接到五天的案子'],
-    ['推','new_here','所以本週要開什麼庭 要等下週一才知道？'],
-    ['→','tea_time','對 板主不會通靈 我們也不會'],
-    ['→','new_here','我懂了 這個板永遠比他慢一週'],
-    ['推','poet_lawyer','每週一整理一份別人已經過完的忙碌 這個板有種奇怪的溫柔'],
-    ['推','pickle_pie','結論：成步堂的行事曆是被案件寫出來的 御劍的 0 是儀式'],
+    ['推','night_owl','？？？ 這週怎麼五天全滿','11/24 09:02'],
+    ['推','tea_time','平常這串都是 0 庭 看一眼就關 今天點進來嚇到','11/24 09:09'],
+    ['推','pudding_88','週四 23:40 才出現 我刷到的時候以為自己眼花','11/24 09:16'],
+    ['推','stat_otaku','本月 14 庭 9 庭是前一天才出現 比例 64% 這個月是怎樣','11/24 09:23'],
+    ['→','sysop','板主也不知道 我只負責整理','11/24 09:30'],
+    ['推','ran_blue','五天全滿 每一天都是重大刑案 他有睡嗎','11/24 09:37'],
+    ['→','legalnews','補充：週五庭期為週四深夜法院排定 與案件移審時程有關 本報無進一步說明','11/24 09:44'],
+    ['推','gavel_fan','庭期臨時加入 常見原因是羈押庭或緊急聲請 一次連這麼多件很少見','11/24 09:51'],
+    ['推','akane_red','最近日本明明還算和平 這個月到底發生什麼事','11/24 09:58'],
+    ['推','kitchen_fox','五天連開 這個人到底有沒有吃飯','11/24 10:05'],
+    ['→','sawako_cutlet','週二傍晚他有來店裡買一份炸肉餅 站在門口吃完才走','11/24 10:12'],
+    ['推','sunset_lover','站在門口吃完 因為沒時間坐下','11/24 10:19'],
+    ['推','sherlock_hole','請問御劍局長那一欄 本週為 0 本月為多少','11/24 10:26'],
+    ['→','sysop','本月 0 庭 上個月 0 庭','11/24 10:33'],
+    ['推','careful_one','整張表只有局長那一欄的 0 還是原本的樣子','11/24 10:40'],
+    ['推','new_here','我第一次點進這串 原來平常不是這樣嗎','11/24 10:47'],
+    ['→','tea_time','平常不是 平常大家看完就走 連推都不推','11/24 10:54'],
+    ['推','young_pros','局長不用開庭 但這個月他在背後處理的事 大概也不會少','11/24 11:01'],
+    ['推','poet_lawyer','一串平常沒人推的表 這個月突然熱鬧起來 這不是好事','11/24 11:08'],
+    ['推','sherlock_hole','請注意 若計入講座 局長那一欄應為辯護 1 公訴 0','08/11 10:20'],
+    ['→','sysop','不計入 你也不要私訊','08/11 10:21'],
+    ['推','old_fan','兩年前那個月我還記得 這串唯一一次被推爆','08/11 10:40'],
+    ['→','tea_time','那個月之後 這串又回到大家看完就走的樣子 這樣最好','08/11 10:45'],
+    ['推','law_junior','板主 那我的論文式可以列入嗎','08/11 22:40'],
+    ['→','sysop','不行 你不是成步堂 回去念書','08/11 22:41'],
   ]
 },
 {
@@ -10732,7 +10742,14 @@ law_junior，我不是要你不開心，你開心是應該的。只是開心完�
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const boardView = $('#boardView');
-let mode = 'list', sel = articles.length - 1, cur = -1;
+const PER = 20;
+const regular = articles.map((a,i)=>i).filter(i=>!articles[i].ann);
+const pins = articles.map((a,i)=>i).filter(i=>articles[i].ann);
+const totalPages = Math.max(1, Math.ceil(regular.length / PER));
+function pageRange(p){ const end = regular.length - (totalPages-1-p)*PER; return [Math.max(0, end-PER), end]; }
+function pageOfIdx(i){ const pos = regular.indexOf(i); if(pos < 0) return -1; for(let p=0;p<totalPages;p++){ const [s,e]=pageRange(p); if(pos>=s && pos<e) return p; } return totalPages-1; }
+function visibleList(){ const [s,e]=pageRange(page); return regular.slice(s,e).concat(pins); }
+let mode = 'list', sel = regular[regular.length-1], cur = -1, page = totalPages-1;
 function score(a){ return a.pushes.reduce((n,p)=> n + (p[0]==='推'?1:p[0]==='噓'?-1:0), 0); }
 function scoreHtml(n){
   if(n >= 14) return '<span class="s-bao">爆</span>';
@@ -10747,23 +10764,41 @@ function fmtTime(a, i, p){
   return `${a.date} ${String(Math.floor(m/60)%24).padStart(2,'0')}:${String(m%60).padStart(2,'0')}`;
 }
 function setKeys(html){ $('#keys').innerHTML = html; }
-function renderList(){
-  mode = 'list'; cur = -1;
-  $('#subL').textContent = '看板《Doujin》逆轉同人討論區';
-  let h = '<div class="head" aria-hidden="true"><span></span><span>編號</span><span>推</span><span>日期</span><span class="hau">作者</span><span>文章標題</span></div>';
-  articles.forEach((a,i)=>{
-    h += `<button class="row${i===sel?' sel':''}" data-i="${i}">
+function rowHtml(i){
+  const a = articles[i];
+  return `<button class="row${i===sel?' sel':''}" data-i="${i}">
       <span class="cur">${i===sel?'›':''}</span>
       <span>${a.ann?'★':i+1}</span>
       <span>${scoreHtml(score(a))}</span>
       <span>${a.date}</span>
       <span class="au">${esc(a.au)}</span>
       <span class="tt${a.ann?' ann':''}">${esc(a.title)}</span></button>`;
-  });
-  h += '<div class="foot-hint">鄉民討論的是官宣之後的同人圈。點選文章閱讀，或用 ↑↓ 與 Enter。</div>';
+}
+function pagerHtml(){
+  const b = (pg,label,dis)=>`<button class="btn" type="button" data-pg="${pg}"${dis?' disabled':''}>${label}</button>`;
+  return `<div class="pager">${b(0,'«',page===0)}${b(page-1,'‹ 上頁',page===0)}<span class="pg">${page+1} / ${totalPages}</span>${b(page+1,'下頁 ›',page===totalPages-1)}${b(totalPages-1,'»',page===totalPages-1)}</div>`;
+}
+function renderList(scrollSel){
+  mode = 'list'; cur = -1;
+  $('#subL').textContent = '看板《Doujin》逆轉同人討論區';
+  const [s,e] = pageRange(page);
+  let h = pagerHtml();
+  h += '<div class="head" aria-hidden="true"><span></span><span>編號</span><span>推</span><span>日期</span><span class="hau">作者</span><span>文章標題</span></div>';
+  regular.slice(s,e).forEach(i=>{ h += rowHtml(i); });
+  if(pins.length){ h += '<div class="pin-sep">── 置底 ──</div>'; pins.forEach(i=>{ h += rowHtml(i); }); }
+  h += pagerHtml();
+  h += '<div class="foot-hint">鄉民討論的是官宣之後的同人圈。點選文章閱讀，或用 ↑↓ 與 Enter，PgUp / PgDn 翻頁。</div>';
   boardView.innerHTML = h;
-  setKeys('(<span>↑↓</span>)選擇 (<span>Enter</span>)閱讀');
-  const r = boardView.querySelector('.row.sel'); if(r) r.scrollIntoView({block:'nearest'});
+  setKeys('(<span>↑↓</span>)選擇 (<span>Enter</span>)閱讀 (<span>PgUp/PgDn</span>)翻頁');
+  const r = boardView.querySelector('.row.sel');
+  if(r && scrollSel !== false) r.scrollIntoView({block: scrollSel==='center'?'center':'nearest'});
+  else window.scrollTo(0,0);
+}
+function goPage(p){
+  page = Math.max(0, Math.min(totalPages-1, p));
+  const [s,e] = pageRange(page);
+  if(!(pins.includes(sel) || regular.slice(s,e).includes(sel))) sel = regular[e-1];
+  renderList(false);
 }
 function pushLine(ty,id,tx,tm,me){
   const c = ty==='推'?'pu':ty==='噓'?'bo':'ar';
@@ -10795,10 +10830,16 @@ function renderArticle(i){
   setKeys('(<span>q / ←</span>)返回看板 (<span>↑↓</span>)上下篇');
   window.scrollTo(0,0);
 }
+function backToList(){
+  const p = pageOfIdx(sel); if(p >= 0) page = p;
+  renderList('center');
+}
 boardView.addEventListener('click', e=>{
   const row = e.target.closest('.row');
   if(row){ renderArticle(+row.dataset.i); return; }
-  if(e.target.id === 'back'){ renderList(); }
+  const pg = e.target.closest('[data-pg]');
+  if(pg && !pg.disabled){ goPage(+pg.dataset.pg); return; }
+  if(e.target.id === 'back'){ backToList(); }
 });
 boardView.addEventListener('submit', e=>{
   if(e.target.id !== 'pf') return;
@@ -10813,18 +10854,25 @@ document.addEventListener('keydown', e=>{
   const tag = (document.activeElement||{}).tagName;
   if(tag === 'INPUT' || tag === 'SELECT' || e.ctrlKey || e.metaKey || e.altKey) return;
   if(mode === 'list'){
-    if(e.key === 'ArrowUp'){ e.preventDefault(); sel = Math.max(0, sel-1); renderList(); }
-    else if(e.key === 'ArrowDown'){ e.preventDefault(); sel = Math.min(articles.length-1, sel+1); renderList(); }
+    const v = visibleList(), k = v.indexOf(sel);
+    if(e.key === 'ArrowUp'){ e.preventDefault();
+      if(k > 0){ sel = v[k-1]; renderList(); }
+      else if(page > 0){ page--; const [s,en] = pageRange(page); sel = regular[en-1]; renderList(); } }
+    else if(e.key === 'ArrowDown'){ e.preventDefault();
+      if(k < v.length-1){ sel = v[k+1]; renderList(); }
+      else if(page < totalPages-1){ page++; const [s] = pageRange(page); sel = regular[s]; renderList(); } }
+    else if(e.key === 'PageUp'){ e.preventDefault(); goPage(page-1); }
+    else if(e.key === 'PageDown'){ e.preventDefault(); goPage(page+1); }
     else if(e.key === 'Enter' || e.key === 'ArrowRight'){ renderArticle(sel); }
   } else {
-    if(e.key === 'q' || e.key === 'ArrowLeft' || e.key === 'Escape'){ renderList(); }
+    if(e.key === 'q' || e.key === 'ArrowLeft' || e.key === 'Escape'){ backToList(); }
     else if(e.key === 'ArrowUp'){ e.preventDefault(); renderArticle(Math.max(0, cur-1)); }
     else if(e.key === 'ArrowDown'){ e.preventDefault(); renderArticle(Math.min(articles.length-1, cur+1)); }
   }
 });
 function clock(){ const d=new Date(); $('#clock').textContent = String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); }
 clock(); setInterval(clock, 30000);
-renderList();
+renderList('center');
 </script>
 
 </body></html>
